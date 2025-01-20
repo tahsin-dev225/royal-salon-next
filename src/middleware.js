@@ -5,10 +5,9 @@ import { NextResponse } from "next/server";
 export const middleware = async (request) =>{
     // const token = await cookies(request).get('next-auth.session-token');before deploying "no __Secure-"
     const cookiesStore = await cookies(request)
-    const token =  cookiesStore.get('next-auth.session-token');
+    const token =  cookiesStore.get('__Secure-next-auth.session-token');
     const pathName = await request.nextUrl.pathname;
     
-
 
     if(pathName.includes('api')){
         return NextResponse.next();
