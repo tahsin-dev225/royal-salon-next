@@ -9,7 +9,7 @@ export const GET = async (request,{params}) =>{
     const usersCollection = db.collection('users');
     try {
         const CurrentDbUser = await usersCollection.findOne({email : param?.email});
-        console.log("ccc", CurrentDbUser ,'kk',param.email)
+        // console.log("ccc", CurrentDbUser ,'kk',param.email)
         return NextResponse.json(CurrentDbUser)
     } catch (error) {
         return NextResponse.json({message : 'error form manage api'},{status : 500})

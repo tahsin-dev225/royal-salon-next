@@ -17,9 +17,9 @@ const Navbar = () => {
                 fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/manage-users/api/${email}`)
                 .then(async(res) =>{
                     const user = await res.json();
-                    console.log(user, 'rle', user.role)
+                    // console.log(user, 'rle', user.role)
                     if(user?.role === 'admin'){
-                        console.log('tor may khay')
+                        // console.log('tor may khay')
                         SetIsAdmin(true)
                         SetMyLoading(false)
                     }

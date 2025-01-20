@@ -9,11 +9,11 @@ import { useEffect, useState } from "react";
 const page = () => {
     const [myBookings, setMyBookings] = useState([]);
     const session = useSession();
-    console.log('email',session?.data?.user?.email)
+    // console.log('email',session?.data?.user?.email)
 
     const loadData = async ()=>{
         const resp = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/${session?.data?.user?.email}`);
-        console.log('my book data',resp?.data)
+        // console.log('my book data',resp?.data)
         setMyBookings(resp?.data?.myBookings)
     }
 

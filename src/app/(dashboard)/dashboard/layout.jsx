@@ -16,7 +16,6 @@ const layout = ({children}) => {
     const currentLink ="py-1 px-1 md:px-3 flex-col lg:flex-row flex justify-center items-center gap-2 w-[90%] mx-auto text-center rounded-md bg-sky-500";
     const baseLink ="py-1 px-1 md:px-3  flex-col lg:flex-row flex justify-center items-center gap-2 w-[90%] mx-auto text-center rounded-md bg-slate-500";
     const {data , status} = useSession();
-    console.log(status)
     const email = data?.user?.email;
 
     useEffect(  ()=>{
@@ -24,9 +23,9 @@ const layout = ({children}) => {
             fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/manage-users/api/${email}`)
             .then(async(res) =>{
                 const user = await res.json();
-                console.log(user, 'rle', user.role)
+                // console.log(user, 'rle', user.role)
                 if(user?.role === 'admin'){
-                    console.log('tor may khay')
+                    // console.log('tor may khay')
                     SetIsAdmin(true)
                     SetMyLoading(false)
                 }
@@ -41,7 +40,7 @@ const layout = ({children}) => {
         </div>
     }
 
-    console.log(isAdmin)
+    // console.log(isAdmin)
 
     if(!isAdmin){
         return <div className="flex justify-center items-center h-screen w-full">

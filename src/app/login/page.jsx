@@ -16,7 +16,7 @@ const page = () => {
             password,
             redirect : false,
         })
-        console.log(resp)
+        // console.log(resp)
         if(resp?.status === 200){
             router.push('/')
         }

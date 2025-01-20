@@ -15,7 +15,7 @@ const page = () => {
             email : e.target.email.value,
             password : e.target.password.value,
         }
-        console.log(newUser)
+        // console.log(newUser)
         const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/signup/api`,{
             method : "POST",
             body : JSON.stringify(newUser),

@@ -16,7 +16,7 @@ export const connectDB = async () =>{
             }
         });
         db = client.db('royal-salon')
-        console.log("connected")
+        // console.log("connected")
         return db;
 
     } catch (err) {

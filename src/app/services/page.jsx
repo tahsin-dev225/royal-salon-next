@@ -5,7 +5,7 @@ import { getServices } from "@/provider/getServices";
 
 const page =async ()  => {
     const {allServices} =await getServices();
-    console.log(allServices)
+    // console.log(allServices)
     return (
         <div className="lg:py-20 pb-5 xl:max-w-[1240px] mx-auto">
             <h1 className="text-center my-8 mx-auto text-2xl lg:text-5xl font-medium">Our All Services.</h1>

@@ -11,6 +11,6 @@ export const POST = async (request)=>{
         // console.log(resp)
         return NextResponse.json({message : "Service added successfully"}, {status : 200})
     } catch (error) {
-        console.log(error)
+        return NextResponse.json({message : 'Something is wrong.'})
     }
 }
