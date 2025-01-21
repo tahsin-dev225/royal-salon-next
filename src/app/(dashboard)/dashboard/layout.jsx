@@ -17,7 +17,7 @@ const layout = ({children}) => {
     const baseLink ="py-1 px-1 md:px-3  flex-col lg:flex-row flex justify-center items-center gap-2 w-[90%] mx-auto text-center rounded-md bg-slate-500";
     const {data , status} = useSession();
     const email = data?.user?.email;
-
+    console.log('sta',status)
     useEffect(  ()=>{
         if(status === 'authenticated'){
             fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/manage-users/api/${email}`)
@@ -29,13 +29,16 @@ const layout = ({children}) => {
                     SetIsAdmin(true)
                     SetMyLoading(false)
                 }
+                SetMyLoading(false)
+            }).catch((error)=>{
+                SetMyLoading(false)
             })
         }
         
     },[status])
 
     if(myLoading){
-        <div className="">
+        return <div className="flex justify-center items-center h-screen w-full">
             <h1 className="text-4xl mx-auto">Loading.....</h1>
         </div>
     }
@@ -50,19 +53,19 @@ const layout = ({children}) => {
 
     if(isAdmin){
         return <div className="lg:pt-20 flex">
-                <div className="xl:min-w-48 space-y-5 xl:min-h-[759px] xl:max-w-72 xl:w-full shadow-2xl border-r border-r-slate-700 flex p-1 md:p-2 flex-col items-center">
-                    {
-                        dashNav.map((nav,idx)=><Link 
-                        key={idx}
-                         className={pathName === nav.path ? currentLink : baseLink} href={nav.path}> 
-                         <span>{nav.icon}</span>
-                            <p className="text-[9px] lg:text-base">{nav.title}</p>
-                        </Link>)
-                    }
-                </div>
-                <div className="w-full px-1 py-4 md:p-5">
-                    {children}
-                </div>
+                    <div className="xl:min-w-48 space-y-5 xl:min-h-[759px] xl:max-w-72 xl:w-full shadow-2xl border-r border-r-slate-700 flex p-1 md:p-2 flex-col items-center">
+                        {
+                            dashNav.map((nav,idx)=><Link 
+                            key={idx}
+                            className={pathName === nav.path ? currentLink : baseLink} href={nav.path}> 
+                            <span>{nav.icon}</span>
+                                <span className="text-[9px] lg:text-base">{nav.title}</span>
+                            </Link>)
+                        }
+                    </div>
+                    <div className="w-full px-1 py-4 md:p-5">
+                        {children}
+                    </div>
                 
             </div>
         

@@ -1,5 +1,4 @@
 "use client"
-import CurrentUser from "@/provider/CurrentUser";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -43,8 +42,7 @@ const AllService = ({service}) => {
     }
 
     return (
-        <div 
-        className="py- px-  rounded shadow-lg  border-slate-900 border-t border-r">
+        <div className="py- px-  rounded shadow-lg  border-slate-900 border-t border-r">
             <div className="relative">
                 <Image className="w-full max-h-[390px] rounded mx-auto h-full" src={photo} width={400} height={600} alt="cut" />
                 <h3 className="font-medium text-xl absolute mx-auto top-0 rounded px-3 py-2 bg-slate-700 bg-opacity-80">{name}</h3>

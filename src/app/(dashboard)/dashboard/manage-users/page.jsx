@@ -3,7 +3,7 @@
 const page = () => {
     return (
         <div>
-            manage users
+            <p className="">User Managing.</p>
         </div>
     );
 };

@@ -3,8 +3,7 @@
 const page = () => {
     return (
         <div className="">
-            
-            dashboard
+            <p className="">Dashboard</p>
         </div>
     );
 };

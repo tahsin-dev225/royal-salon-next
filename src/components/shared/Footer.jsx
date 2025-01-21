@@ -4,6 +4,7 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 
 const Footer = () => {
+    
     return (
         <div>
             <footer className="footer  bg-gradient-to-br from-cyan-950/30 to-[#040c314f] text-base-content p-10 py-16">

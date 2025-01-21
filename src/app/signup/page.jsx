@@ -59,7 +59,7 @@ const page = () => {
                         </div>
                         <input className="w-full my-6 py-2 bg-orange-500 rounded cursor-pointer" type="submit" value="Sign Up" />
                     </form>
-                    <p className="mx-auto my-4 mb-8 text-center ">Have an account? <Link href='/login' className='text-[#FF3811] font-bold'>login</Link></p>
+                    <div className="mx-auto my-4 mb-8 text-center ">Have an account? <Link href='/login' className='text-[#FF3811] font-bold'>login</Link></div>
                 </div>
             </div>
         </div>

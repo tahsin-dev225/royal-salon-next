@@ -15,8 +15,7 @@ const page = () => {
 
     const handleDelete = async (id)=>{
         const deleted = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${id}`)
-
-        if(deleted.data.status === 200){
+        if(deleted.status === 200){
             Swal.fire({
                 position: "top-end",
                 icon: "success",

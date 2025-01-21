@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const page = () => {
     const router = useRouter()
@@ -19,6 +20,14 @@ const page = () => {
         // console.log(resp)
         if(resp?.status === 200){
             router.push('/')
+        }else{
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Information is wrong.",
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     }
 
@@ -32,10 +41,6 @@ const page = () => {
                      onSubmit={handleLogin} 
                       className="px-10 my-6">
                         <div className="">
-                            <p className="my-3">Name</p>
-                            <input type="text" name='name' placeholder="name" className="input w-full input-bordered" required />
-                        </div>
-                        <div className="">
                             <p className="my-3">Email</p>
                             <input type="text" name='email' placeholder="Email" className="input w-full input-bordered" required />
                         </div>
@@ -45,7 +50,7 @@ const page = () => {
                         </div>
                         <input className="w-full my-6 py-2 bg-orange-500 rounded " type="submit" value="Login" />
                     </form>
-                    <p className="mx-auto my-4 mb-8 text-center ">Don't have account? <Link href='/signup' className='text-[#FF3811] font-bold'>Sign Up</Link></p>
+                    <div className="mx-auto my-4 mb-8 text-center ">Don't have account? <Link href='/signup' className='text-[#FF3811] font-bold'>Sign Up</Link></div>
                 </div>
             </div>
         </div>

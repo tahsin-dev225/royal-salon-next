@@ -13,12 +13,11 @@ export const middleware = async (request) =>{
     }
 
     if(!token){
-     
         return NextResponse.redirect(new URL(`/login?redirect=${pathName}`, request.url))
     }
     return NextResponse.next();
 }
 
 export const config={
-    matcher : ["/my-bookings/:path*", "/dashboard/:path*", ],   runtime: 'nodejs',
+    matcher : ["/my-bookings/:path*", "/dashboard/:path*" ],   runtime: 'nodejs',
 }

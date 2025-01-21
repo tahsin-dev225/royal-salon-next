@@ -3,7 +3,6 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const page = () => {
@@ -12,21 +11,23 @@ const page = () => {
     // console.log('email',session?.data?.user?.email)
 
     const loadData = async ()=>{
-        const resp = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/${session?.data?.user?.email}`);
-        // console.log('my book data',resp?.data)
-        setMyBookings(resp?.data?.myBookings)
+        try {
+            const resp = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/${session?.data?.user?.email}`);
+            setMyBookings(resp?.data?.myBookings)            
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     useEffect(()=>{
         if(session?.data?.user?.email){
            loadData(); 
-        }
-        
+    }
     },[session])
 
     return (
-        <div className="pt-20 pb-8 xl:max-w-[1220px] mx-auto">
-            <h1 className="text-white text-3xl font-bold flex justify-center items-center">Services Details</h1>
+        <div className="pt-20 h-screen pb-8 xl:max-w-[1220px] mx-auto">
+            <h1 className="text-white text-3xl my-3 font-bold flex justify-center items-center">Services Details</h1>
             <div className="overflow-x-auto w-full my-14">
                 <table className="table w-full">
                     {/* head */}
@@ -35,7 +36,7 @@ const page = () => {
                             <th></th>
                             <th>service Name</th>
                             <th>Price</th>
-                            <th>Date</th>
+                            <th>Time</th>
                             <th>Image</th>
                         </tr>
                     </thead>

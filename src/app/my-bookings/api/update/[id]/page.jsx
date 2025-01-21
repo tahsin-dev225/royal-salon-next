@@ -1,11 +1,12 @@
 "use client"
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
 
 const page = ({params}) => {
-
+    const route = useRouter();
 
     const handleUpdateTime = async (e)=>{
         e.preventDefault();
@@ -21,6 +22,7 @@ const page = ({params}) => {
                 showConfirmButton: false,
                 timer: 1500
               });
+            route.push('/dashboard/all-bookings')
         }
     }
 

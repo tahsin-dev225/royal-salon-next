@@ -12,8 +12,12 @@ const page = () => {
     const [allService, setAllServices] = useState([])
     
     const loadData = async ()=>{
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/manage-service/api`)
-        setAllServices(res?.data?.allServices)
+        try {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/manage-service/api`)
+            setAllServices(res?.data?.allServices)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const handleDelete = async (id) =>{
@@ -60,7 +64,7 @@ const page = () => {
                                 <Image src={service?.photo} width={50} height={30} alt="Service" />
                                 <p className="text- lg:hidden my-2">{service?.name}</p>
                             </td>
-                            <td className="hidden lg:flex ">{service?.name}</td>
+                            <td className="hidden lg:block ">{service?.name}</td>
                             <td>{service?.price}</td>
                             <td>{service?.category}</td>
                             <td>
