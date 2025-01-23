@@ -5,12 +5,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
     const [myLoading , SetMyLoading] = useState(true)
     const [isAdmin , SetIsAdmin] = useState(false)
     const {data, status} = useSession();
     const email = data?.user?.email;
+
+    const logoutAlert = ()=>{
+        signOut() ;
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Logout Successfully.",
+            showConfirmButton: false,
+            timer: 1500
+            });
+    }
     
         useEffect(  ()=>{
             if(status === 'authenticated'){
@@ -76,7 +88,7 @@ const Navbar = () => {
             <div className="navbar-end lg:mx-10 gap-2">
                 {
                     data?.user?.email ? 
-                        <button onClick={()=> signOut()} className="btn btn-secondary rounded-3xl btn-sm btn-outline"> logout <span className="text-white"> <FaSignOutAlt/></span></button>
+                        <button onClick={()=>{logoutAlert()}} className="btn btn-secondary rounded-3xl btn-sm btn-outline"> logout <span className="text-white"> <FaSignOutAlt/></span></button>
                     :
                     <Link className="py-2 px-8 rounded-md hover:bg-opacity-50 transition-all delay-200 hover:bg-amber-700 bg-amber-800" href={'/login'}>Login</Link>
                 }

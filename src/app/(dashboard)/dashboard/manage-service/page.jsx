@@ -22,8 +22,8 @@ const page = () => {
 
     const handleDelete = async (id) =>{
         const res = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/manage-service/api/${id}`)
-
-        if(deleted.data.status === 200){
+        console.log('delete service',res)
+        if(res.status === 200){
             Swal.fire({
                 position: "top-end",
                 icon: "success",

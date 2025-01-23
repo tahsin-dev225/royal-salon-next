@@ -17,7 +17,7 @@ const layout = ({children}) => {
     const baseLink ="py-1 px-1 md:px-3  flex-col lg:flex-row flex justify-center items-center gap-2 w-[90%] mx-auto text-center rounded-md bg-slate-500";
     const {data , status} = useSession();
     const email = data?.user?.email;
-    console.log('sta',status)
+    
     useEffect(  ()=>{
         if(status === 'authenticated'){
             fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/manage-users/api/${email}`)

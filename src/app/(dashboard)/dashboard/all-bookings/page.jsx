@@ -1,8 +1,8 @@
 "use client"
+import SingleBookingDetails from "@/components/SingleBookingDetails";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
 
 
 const page = () => {
@@ -11,20 +11,6 @@ const page = () => {
     const loadData = async ()=>{
         const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/all-bookings/get-bookings`)
         setAllBookings(res.data.allBookings)
-    }
-
-    const handleDelete = async (id)=>{
-        const deleted = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${id}`)
-        if(deleted.status === 200){
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Booking has been deleted after cutting.",
-                showConfirmButton: false,
-                timer: 1500
-              });
-            loadData()
-        }
     }
 
     useEffect(()=>{
@@ -44,22 +30,13 @@ const page = () => {
                             <th>Price</th>
                             <th>Email</th>
                             <th>Time</th>
+                            <th>Set Time</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                     {
-                        allBookings.map((service,inx) =><tr key={service._id}>
-                            <th>{inx + 1}</th>
-                            <td>{service?.name}</td>
-                            <td>{service?.price}</td>
-                            <td>{service?.email}</td>
-                            <td>{service?.time}</td>
-                            <td>
-                                <Link href={`/my-bookings/api/update/${service._id}`} className="btn mr-3 btn-sm text-white btn-primary" > Send A Time.</Link>
-                                <button onClick={()=> handleDelete(service?._id)} className="btn btn-sm btn-gost">Delete</button>
-                            </td>
-                        </tr>)
+                        allBookings.map((service,idx) =><SingleBookingDetails key={service._id} service={service} idx={idx} loadData={loadData} ></SingleBookingDetails>)
                     }
                     </tbody>
                 </table>

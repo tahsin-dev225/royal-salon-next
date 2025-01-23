@@ -2,24 +2,34 @@
 import Image from "next/image";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const page = () => {
-    const router = useRouter()
+    const [disable, setdisable] = useState(false)
+    const router = useRouter();
+    const searchParams = useSearchParams()
+    const path = searchParams.get("redirect")
+    const normalButton = "w-full my-6 py-2 bg-orange-500 rounded"
+    const disablelButton = "w-full text-black my-6 py-2 bg-slate-200 rounded"
+
+
 
     const handleLogin =async (e) =>{
+        setdisable(true)
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
         const resp = await signIn("credentials", {
             email,
             password,
-            redirect : false,
+            redirect : false
         })
-        // console.log(resp)
+        console.log(resp)
         if(resp?.status === 200){
-            router.push('/')
+            router.push(path ? path : '/')
+            setdisable(false)
         }else{
             Swal.fire({
                 position: "top-end",
@@ -28,7 +38,9 @@ const page = () => {
                 showConfirmButton: false,
                 timer: 3000
             });
+            setdisable(false)
         }
+        setdisable(false)
     }
 
     return (
@@ -48,7 +60,7 @@ const page = () => {
                             <p className="my-3">Password</p>
                             <input type="text" name='password' placeholder="Password" className="input w-full input-bordered" required />
                         </div>
-                        <input className="w-full my-6 py-2 bg-orange-500 rounded " type="submit" value="Login" />
+                        <input disabled={disable} className={`${disable ? disablelButton : normalButton}  `} type="submit" value="Login" />
                     </form>
                     <div className="mx-auto my-4 mb-8 text-center ">Don't have account? <Link href='/signup' className='text-[#FF3811] font-bold'>Sign Up</Link></div>
                 </div>

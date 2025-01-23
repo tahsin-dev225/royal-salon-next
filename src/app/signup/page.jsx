@@ -3,12 +3,18 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 
 const page = () => {
+    const [disable, setdisable] = useState(false)
     const router =  useRouter();
+    const normalButton = "w-full my-6 py-2 bg-orange-500 rounded"
+    const disablelButton = "w-full text-black my-6 py-2 bg-slate-200 rounded"
 
     const handleSignup =async (e) =>{
+        setdisable(true)
         e.preventDefault();
         const newUser = {
             name : e.target.name.value,
@@ -30,10 +36,20 @@ const page = () => {
                     password : newUser?.password,
                     redirect : false,
                 })
+                setdisable(false)
                 e.target.reset();
                 router?.push('/')
+            }else{
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Information is wrong or email already exist.",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                setdisable(false)
             }
-
+            setdisable(false)
     }
 
     return (
@@ -57,7 +73,7 @@ const page = () => {
                             <p className="my-3">Password</p>
                             <input type="text" name='password' placeholder="Password" className="input w-full input-bordered" required />
                         </div>
-                        <input className="w-full my-6 py-2 bg-orange-500 rounded cursor-pointer" type="submit" value="Sign Up" />
+                        <input disabled={disable} className={`${disable ? disablelButton : normalButton}  `} type="submit" value="Sign Up" />
                     </form>
                     <div className="mx-auto my-4 mb-8 text-center ">Have an account? <Link href='/login' className='text-[#FF3811] font-bold'>login</Link></div>
                 </div>

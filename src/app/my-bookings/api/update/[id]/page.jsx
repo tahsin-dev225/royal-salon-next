@@ -27,8 +27,8 @@ const page = ({params}) => {
     }
 
     return (
-        <div>
-            <h1 className="text-center py-20 mx-auto text-4xl font-medium">Update Booking time.</h1>
+        <div className="h-screen flex items-center flex-col justify-center">
+            <h1 className="text-center mb-8 mx-auto text-4xl font-medium">Update Booking time.</h1>
             <div className="border border-slate-900 border-t-slate-700 my-6 border-e-slate-600  w-full lg:w-[80%] rounded-md  shrink-0 shadow-2xl mx-auto">
                     <div className="text-center mx-auto text-3xl font-medium mt-8 ">Add time carefully. </div>
                     <form onSubmit={handleUpdateTime} 

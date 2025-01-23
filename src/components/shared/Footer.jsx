@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <div>
             <footer className="footer  bg-gradient-to-br from-cyan-950/30 to-[#040c314f] text-base-content p-10 py-16">
-                <aside className="mx-auto">
+                <aside className="lg:mx-auto">
                     <Image className="h-auto" src={'/img/royal-selon.webp'} width={100} height={50} alt="logo" />
                     <p className="my-3">
                     Royal Style Salon
@@ -16,7 +16,7 @@ const Footer = () => {
                     Providing salon service since 2018
                     </p>
                 </aside>
-                <nav className="mx-auto">
+                <nav className="lg:mx-auto">
                     <h1 className="text-lg font-bold text-slate-400">Navs</h1>
                     {
                         navItems.map((item, idx) =><Link className="hover:text-yellow-200" key={idx} href={item.path}>
@@ -24,7 +24,7 @@ const Footer = () => {
                         </Link>)
                     }
                 </nav>
-                <nav className="mx-auto">
+                <nav className="lg:mx-auto">
                     <h6 className="footer-title">Company</h6>
                     <a className="link link-hover">About us</a>
                     <a className="link link-hover">Contact</a>
